@@ -1,6 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 const Button = ({ onLoadMore, hasMoreImages }) => {
   return (
     hasMoreImages && (
@@ -9,11 +6,6 @@ const Button = ({ onLoadMore, hasMoreImages }) => {
       </button>
     )
   );
-};
-
-Button.propTypes = {
-  onLoadMore: PropTypes.func.isRequired,
-  hasMoreImages: PropTypes.bool.isRequired,
 };
 
 export default Button;

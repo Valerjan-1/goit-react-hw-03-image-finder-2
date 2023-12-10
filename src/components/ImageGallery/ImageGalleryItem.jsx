@@ -1,6 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 const ImageGalleryItem = ({ image, openModal }) => {
   return (
     <li className="ImageGalleryItem">
@@ -12,11 +9,6 @@ const ImageGalleryItem = ({ image, openModal }) => {
       />
     </li>
   );
-};
-
-ImageGalleryItem.propTypes = {
-  image: PropTypes.object.isRequired,
-  openModal: PropTypes.func.isRequired,
 };
 
 export default ImageGalleryItem;
