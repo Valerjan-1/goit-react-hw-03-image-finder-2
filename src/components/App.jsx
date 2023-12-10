@@ -15,7 +15,7 @@ class App extends Component {
       largeImageURL: '',
       showModal: false,
       hasMoreImages: true,
-      isLoading: true,
+      isLoading: false,
     };
   }
 
@@ -34,9 +34,9 @@ class App extends Component {
   fetchImages = (searchQuery, page) => {
     this.setState({ isLoading: true });
 
-    const apiKey = '40243094-9cac1343afd7c4b92bc3dbcfd';
+    const API_KEY = '40349045-40ce8f9906407a6daca01a4c4';
     const perPage = 12;
-    const apiUrl = `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${apiKey}&image_type=photo&orientation=horizontal&per_page=${perPage}`;
+    const apiUrl = `https://pixabay.com/api/?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${perPage}`;
 
     fetch(apiUrl)
       .then(response => response.json())
