@@ -3,6 +3,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
+import Loader from './Loader/Loader';
 
 class App extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class App extends Component {
       largeImageURL: '',
       showModal: false,
       hasMoreImages: true,
-      loading: false,
+      isLoading: true,
     };
   }
 
@@ -31,7 +32,7 @@ class App extends Component {
   };
 
   fetchImages = (searchQuery, page) => {
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
 
     const apiKey = '40243094-9cac1343afd7c4b92bc3dbcfd';
     const perPage = 12;
@@ -50,14 +51,14 @@ class App extends Component {
       })
       .catch(error => console.error('Error fetching images:', error))
       .finally(() => {
-        this.setState({ loading: false });
+        this.setState({ isLoading: false });
       });
   };
 
   handleLoadMore = () => {
-    const { loading, hasMoreImages, query, currentPage } = this.state;
+    const { isLoading, hasMoreImages, query, currentPage } = this.state;
 
-    if (!loading && hasMoreImages) {
+    if (!isLoading && hasMoreImages) {
       this.fetchImages(query, currentPage);
     }
   };
@@ -77,7 +78,7 @@ class App extends Component {
   };
 
   render() {
-    const { images, largeImageURL, showModal, hasMoreImages, loading } =
+    const { images, largeImageURL, showModal, hasMoreImages, isLoading } =
       this.state;
     const shouldRenderLoadMore = images.length > 0 && hasMoreImages;
 
@@ -85,8 +86,12 @@ class App extends Component {
       <div className="App">
         <Searchbar onSubmit={this.handleSearchSubmit} />
         <ImageGallery images={images} openModal={this.openModal} />
-        {loading && <p>Loading...</p>}
-        {shouldRenderLoadMore && !loading && (
+        {isLoading && (
+          <div className="spinnerContainer">
+            <Loader />
+          </div>
+        )}
+        {shouldRenderLoadMore && !isLoading && (
           <Button
             onLoadMore={this.handleLoadMore}
             hasMoreImages={hasMoreImages}

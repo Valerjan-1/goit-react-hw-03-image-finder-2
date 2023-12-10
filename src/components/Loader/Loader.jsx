@@ -1,12 +1,7 @@
-import React from 'react';
-import { Loader } from 'react-loader-spinner';
+import { RotatingLines } from 'react-loader-spinner';
 
-const LoaderComponent = () => {
-  return (
-    <div className="loader">
-      <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
-    </div>
-  );
-};
+const Loader = () => (
+  <RotatingLines type="TailSpin" strokeColor="red" height={200} width={200} />
+);
 
-export default LoaderComponent;
+export default Loader;
